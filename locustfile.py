@@ -1,37 +1,84 @@
-# Copyright 2015-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
-#
-# Licensed under the Apache License, Version 2.0 (the "License"). You may not use this file
-# except in compliance with the License. A copy of the License is located at
-#
-#     http://aws.amazon.com/apache2.0/
-#
-# or in the "license" file accompanying this file. This file is distributed on an "AS IS"
-# BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
-# License for the specific language governing permissions and limitations under the License.
+from locust import Locust, TaskSet, task
+from kinesis_client import KinesisClient
 
-import os
-import string
-import random
-from locust import HttpLocust, TaskSet, task
 
-class MyTaskSet(TaskSet):
+class AccountOverview(TaskSet):
+    min_wait = 10000
+    max_wait = 60000
+
     @task(1000)
-    def index(self):
-        response = self.client.get("/")
+    def account_overview(self):
+        self.client.put_data_in_stream("account_overview", "Account Overview")
 
-    # This task will 15 times for every 1000 runs of the above task
-    # @task(15)
-    # def about(self):
-    #     self.client.get("/blog")
+    @task(100)
+    def pending_transactions(self):
+        self.client.put_data_in_stream("pending_transactions", "Pending Transactions")
 
-    # This task will run once for every 1000 runs of the above task
-    # @task(1)
-    # def about(self):
-    #     id = id_generator()
-    #     self.client.post("/signup", {"email": "example@example.com", "name": "Test"})
+    @task(300)
+    def view_transaction(self):
+        self.client.put_data_in_stream("view_transaction", "View transaction")
 
-class MyLocust(HttpLocust):
-    host = os.getenv('TARGET_URL', "http://localhost")
-    task_set = MyTaskSet
-    min_wait = 45
-    max_wait = 50
+    @task(600)
+    def stop(self):
+        self.interrupt()
+
+
+class BenCreation(TaskSet):
+    min_wait = 30000
+    max_wait = 120000
+
+    @task(1000)
+    def add_beneficiary(self):
+        self.client.put_data_in_stream("ben_creation", "Beneficiary Creation")
+        self.client.put_data_in_stream("payment", "Payment")
+
+    @task(200)
+    def stop(self):
+        self.interrupt()
+
+
+class InternationalPayment(TaskSet):
+    min_wait = 30000
+    max_wait = 120000
+
+    @task(1000)
+    def add_beneficiary(self):
+        self.client.put_data_in_stream("ben_creation", "Beneficiary Creation")
+
+    @task(200)
+    def stop(self):
+        self.interrupt()
+
+
+class Payment(TaskSet):
+    min_wait = 30000
+    max_wait = 120000
+
+    @task
+    def payment(self):
+        self.client.put_data_in_stream("payment", "Payment")
+
+    @task
+    def transfer(self):
+        self.client.put_data_in_stream("transfer", "Transfer")
+
+    @task
+    def stop(self):
+        self.interrupt()
+
+    tasks = {BenCreation: 15, InternationalPayment: 1, payment: 60, transfer: 10, stop: 5}
+
+
+class NormalUser(TaskSet):
+    def on_start(self):
+        self.client.put_data_in_stream("login", "Login")
+
+    tasks = {Payment: 15, AccountOverview: 20}
+
+
+class NormalUserLocust(Locust):
+    task_set = NormalUser
+
+    def __init__(self):
+        super(NormalUserLocust, self).__init__()
+        self.client = KinesisClient("eu-west-1", "galaxy-stream", 1)
