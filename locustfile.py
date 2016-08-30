@@ -1,5 +1,9 @@
+import random
+
 from locust import Locust, TaskSet, task
+
 from kinesis_client import KinesisClient
+import session
 
 
 class AccountOverview(TaskSet):
@@ -12,7 +16,8 @@ class AccountOverview(TaskSet):
 
     @task(100)
     def pending_transactions(self):
-        self.client.put_data_in_stream("pending_transactions", "Pending Transactions")
+        self.client.put_data_in_stream(
+            "pending_transactions", "Pending Transactions")
 
     @task(300)
     def view_transaction(self):
@@ -66,12 +71,17 @@ class Payment(TaskSet):
     def stop(self):
         self.interrupt()
 
-    tasks = {BenCreation: 15, InternationalPayment: 1, payment: 60, transfer: 10, stop: 5}
+    tasks = {BenCreation: 15, InternationalPayment: 1,
+             payment: 60, transfer: 10, stop: 5}
 
 
 class NormalUser(TaskSet):
+
     def on_start(self):
-        self.client.put_data_in_stream("login", "Login")
+        this_session = session.Session().generate(1)
+        this_session["device"] = random.choice(this_session["u"]["devices"])
+        this_session["u"]["devices"].pop()
+        self.client.put_data_in_stream(session, "Login")
 
     tasks = {Payment: 15, AccountOverview: 20}
 

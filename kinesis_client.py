@@ -10,7 +10,10 @@ import time
 
 class TimeoutError(Exception):
     pass
+
+
 class KinesisClient():
+
     def __init__(self, region, stream_name, number_of_shards):
         # Connect to Kinesis
         self.kinesis = aws_kinesis.connect_to_region(region)
@@ -21,8 +24,10 @@ class KinesisClient():
         request_meta["start_time"] = time.time()
         request_meta["method"] = 'Message'
         request_meta["name"] = event_type
-        self.kinesis.put_record(self.stream_name, json.dumps(data), "partitionkey")
-        request_meta["response_time"] = (time.time() - request_meta["start_time"]) * 1000
+        self.kinesis.put_record(
+            self.stream_name, json.dumps(data), "partitionkey")
+        request_meta["response_time"] = (
+            time.time() - request_meta["start_time"]) * 1000
         events.request_success.fire(
             request_type=request_meta["method"],
             name=request_meta["name"],
