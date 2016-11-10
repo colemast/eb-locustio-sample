@@ -4,8 +4,15 @@ from locust import events
 from boto import kinesis as aws_kinesis
 import boto
 
-import testdata
 import time
+
+from jinja2 import Environment, FileSystemLoader
+
+env = Environment(loader=FileSystemLoader('.'))
+env.filters['jsonify'] = json.dumps
+
+# Template file at ./app/templates/example.json
+template = env.get_template('payload_ben.json')
 
 
 class TimeoutError(Exception):
@@ -24,8 +31,10 @@ class KinesisClient():
         request_meta["start_time"] = time.time()
         request_meta["method"] = 'Message'
         request_meta["name"] = event_type
+
         self.kinesis.put_record(
             self.stream_name, json.dumps(data), "partitionkey")
+
         request_meta["response_time"] = (
             time.time() - request_meta["start_time"]) * 1000
         events.request_success.fire(
@@ -35,42 +44,41 @@ class KinesisClient():
             response_length=0
         )
 
-    # def get_kinesis_data_iterator(self, minutes_running):
-    #     # Get data about Kinesis stream for Tag Monitor
-    #     kinesis_stream = self.kinesis.describe_stream(self.stream_name)
-    #     # Get the shards in that stream
-    #     shards = kinesis_stream['StreamDescription']['Shards']
-    #     # Collect together the shard IDs
-    #     shard_ids = [shard['ShardId'] for shard in shards]
-    #     # Get shard iterator
-    #     iter_response = self.kinesis.get_shard_iterator(
-    #         self.stream_name, shard_ids[0], "TRIM_HORIZON")
-    #     shard_iterator = iter_response['ShardIterator']
+    def get_kinesis_data_iterator(self, minutes_running):
+        # Get data about Kinesis stream for Tag Monitor
+        kinesis_stream = self.kinesis.describe_stream(self.stream_name)
+        # Get the shards in that stream
+        shards = kinesis_stream['StreamDescription']['Shards']
+        # Collect together the shard IDs
+        shard_ids = [shard['ShardId'] for shard in shards]
+        # Get shard iterator
+        iter_response = self.kinesis.get_shard_iterator(
+            self.stream_name, shard_ids[0], "TRIM_HORIZON")
+        shard_iterator = iter_response['ShardIterator']
 
-    #     while True:
-    #         try:
-    #             # Get data
-    #             record_response = self.kinesis.get_records(shard_iterator)
-    #             # Stop looping if no data returned. This means it's done
-    #             if not record_response:
-    #                 break
-    #             # yield data to outside calling iterator
-    #             for record in record_response['Records']:
-    #                 last_sequence = record['SequenceNumber']
-    #                 if 'Data' in record:
-    #                     yield json.loads(record['Data'])
-    #                 else:  # iterator is exhausted
-    #                     break
-    #             # Get next iterator for shard from previous request
-    #             shard_iterator = record_response['NextShardIterator']
-    #         # Catch exception meaning hitting API too much
-    #         except boto.kinesis.exceptions.ProvisionedThroughputExceededException:
-    #             print 'ProvisionedThroughputExceededException found. Sleeping for 0.5 seconds...'
-    #             time.sleep(1)
-    #         # Catch exception meaning iterator has expired
-    #         except boto.kinesis.exceptions.ExpiredIteratorException:
-    #             iter_response = self.kinesis.get_shard_iterator(
-    #                 self.stream_name, shard_ids[0], "AFTER_SEQUENCE_NUMBER", last_sequence)
-    #             shard_iterator = iter_response['ShardIterator']
-
-    #     self.kinesis.close()
+        while True:
+            try:
+                # Get data
+                record_response = self.kinesis.get_records(shard_iterator, limit = 20)
+                # Stop looping if no data returned. This means it's done
+                if not record_response:
+                    break
+                # yield data to outside calling iterator
+                for record in record_response['Records']:
+                    last_sequence = record['SequenceNumber']
+                    if 'Data' in record:
+                        yield json.loads(record['Data'])
+                    else:  # iterator is exhausted
+                        break
+                # Get next iterator for shard from previous request
+                shard_iterator = record_response['NextShardIterator']
+                time.sleep(0.2)
+            # Catch exception meaning hitting API too much
+            except boto.kinesis.exceptions.ProvisionedThroughputExceededException:
+                print 'ProvisionedThroughputExceededException found. Sleeping for 0.5 seconds...'
+                time.sleep(1)
+            # Catch exception meaning iterator has expired
+            except boto.kinesis.exceptions.ExpiredIteratorException:
+                iter_response = self.kinesis.get_shard_iterator(
+                    self.stream_name, shard_ids[0], "AFTER_SEQUENCE_NUMBER", last_sequence)
+                shard_iterator = iter_response['ShardIterator']

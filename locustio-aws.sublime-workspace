@@ -3,6 +3,14 @@
 	{
 		"selected_items":
 		[
+			[
+				"eve",
+				"event_type"
+			],
+			[
+				"str",
+				"stream_name"
+			]
 		]
 	},
 	"buffers":
@@ -11,31 +19,7 @@
 			"file": "locustfile.py",
 			"settings":
 			{
-				"buffer_size": 2003,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "mida_session.py",
-			"settings":
-			{
-				"buffer_size": 113,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/Users/mellypang/Library/Application Support/Sublime Text 3/Packages/Anaconda/Anaconda.sublime-settings",
-			"settings":
-			{
-				"buffer_size": 19076,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "locustio-aws.sublime-project",
-			"settings":
-			{
-				"buffer_size": 351,
+				"buffer_size": 2207,
 				"line_ending": "Unix"
 			}
 		},
@@ -43,7 +27,15 @@
 			"file": "kinesis_client.py",
 			"settings":
 			{
-				"buffer_size": 3102,
+				"buffer_size": 3296,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "build.rb",
+			"settings":
+			{
+				"buffer_size": 5865,
 				"line_ending": "Unix"
 			}
 		}
@@ -87,10 +79,13 @@
 	},
 	"expanded_folders":
 	[
-		"/Users/mellypang/lloyds/eb-locustio-sample"
+		"/Users/melodypang/Stuey/eb-locustio-sample"
 	],
 	"file_history":
 	[
+		"/Users/melodypang/Stuey/eb-locustio-sample/locustio-aws.sublime-project",
+		"/Users/mellypang/Library/Application Support/Sublime Text 3/Packages/Anaconda/Anaconda.sublime-settings",
+		"/Users/melodypang/Stuey/eb-locustio-sample/mida_session.py"
 	],
 	"find":
 	{
@@ -135,15 +130,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2003,
+						"buffer_size": 2207,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								614,
-								614
+								84,
+								97
 							]
 						],
 						"settings":
@@ -153,32 +148,34 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 714.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "mida_session.py",
+					"file": "kinesis_client.py",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 113,
+						"buffer_size": 3296,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								113,
-								113
+								342,
+								342
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Python/Python.sublime-syntax"
+							"syntax": "Packages/Python/Python.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -189,91 +186,32 @@
 				},
 				{
 					"buffer": 2,
-					"file": "/Users/mellypang/Library/Application Support/Sublime Text 3/Packages/Anaconda/Anaconda.sublime-settings",
-					"semi_transient": false,
+					"file": "build.rb",
+					"semi_transient": true,
 					"settings":
 					{
-						"buffer_size": 19076,
+						"buffer_size": 5865,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3106,
-								3118
+								0,
+								0
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JSON.sublime-syntax",
-							"tab_size": 4,
+							"syntax": "Packages/Ruby/Ruby.sublime-syntax",
+							"tab_size": 2,
 							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 1084.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "locustio-aws.sublime-project",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 351,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								341,
-								341
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JSON.sublime-syntax",
-							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "kinesis_client.py",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 3102,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								208,
-								208
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
 					"type": "text"
 				}
 			]
