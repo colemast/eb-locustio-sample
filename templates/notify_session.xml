@@ -1,0 +1,8 @@
+<request>
+	<party_id>{{ party_id }}</party_id>
+	<session_id>{{ session_id }}</session_id>
+	<txn_timestamp>{{ timestamp }}</txn_timestamp>
+	<device_id>{{ device_id }}</device_id>
+	<device_type>{{ device_type }}</device_type>
+	<event_type>NotifySession</event_type>
+</request>

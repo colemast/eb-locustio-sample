@@ -3,6 +3,58 @@
 	{
 		"selected_items":
 		[
+			[
+				"c",
+				"choice	statement"
+			],
+			[
+				"Ran",
+				"RandomSelection	class"
+			],
+			[
+				"se",
+				"session_id"
+			],
+			[
+				"t",
+				"time	function"
+			],
+			[
+				"R",
+				"RandomLengthStringFactory	class"
+			],
+			[
+				"set",
+				"settings	module"
+			],
+			[
+				"Ra",
+				"RandomLengthStringFactory	class"
+			],
+			[
+				"De",
+				"DEVICES	statement"
+			],
+			[
+				"s",
+				"seed	statement"
+			],
+			[
+				"PE",
+				"PERC_TABLET_BROWSER	statement"
+			],
+			[
+				"D",
+				"DictFactory	class"
+			],
+			[
+				"r",
+				"RandomLengthStringFactory	class"
+			],
+			[
+				"Rando",
+				"RandomLengthStringFactory	class"
+			]
 		]
 	},
 	"buffers":
@@ -11,31 +63,50 @@
 			"file": "locustfile.py",
 			"settings":
 			{
-				"buffer_size": 2003,
+				"buffer_size": 2212,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "mida_session.py",
+			"contents": "Package Control Messages\n========================\n\nPackage Control\n---------------\n\n  Version 3.2 Release Notes\n  \n  This version of Package Control focuses on bug-fixes, with notable changes\n  including:\n  \n   - OS X TLS trust roots are exported using APIs to prevent the error message\n     displayed to some El Capitan users\n  \n   - Theme, syntax and color scheme upgrades have been improved and should result\n     in fewer popup messages when filenames change\n  \n   - Various bugs related to installing dependencies have been resolved\n  \n   - Windows and OS X trust roots are exported in a way that valid/invalid purpose\n     information is now communicated to the OpenSSL-based Python ssl module\n  \n   - Further improvements have been made to handling of git/hg package upgrades\n  \n   - The Windows WinINet downloader has improved compatibility with Windows 10\n\n\nAnaconda\n--------\n\n  \n                                                            |\n                _` |  __ \\    _` |   __|   _ \\   __ \\    _` |   _` |\n               (   |  |   |  (   |  (     (   |  |   |  (   |  (   |\n              \\__,_| _|  _| \\__,_| \\___| \\___/  _|  _| \\__,_| \\__,_|\n                                       The Sublime Text 3 Python IDE\n  \n  \n  Anaconda v2.0.8\n  ===============\n  \n  This is a minor bug fix and features release\n  \n  ## Fixes\n  \n  	- Fixed line truncation in some PEP8 errors descriptions related with bad\n  	  indentation\n      - Fixed anaconda failing to determine the next error when running Next\n        error comman\n  \n  ## Additions\n  \n  	- Added new `Previous lint error` command that works opposite to the\n  	  already present `Next lint error` (obviusly)\n  	- Added new config option `swallog_startup_errors` to completely\n  	  ignore startup errors (use at your own risk)\n\n  \n                                                            |\n                _` |  __ \\    _` |   __|   _ \\   __ \\    _` |   _` |\n               (   |  |   |  (   |  (     (   |  |   |  (   |  (   |\n              \\__,_| _|  _| \\__,_| \\___| \\___/  _|  _| \\__,_| \\__,_|\n                                       The Sublime Text 3 Python IDE\n  \n  \n  Anaconda v2.0.7\n  ===============\n  \n  This is a minor bug fix release\n  \n  ## Fixes\n  \n      - Next lint error raises an exception if current line is larger than last\n        error line, @alin23 provided a fix that resolves #524\n      - Fixed unicode error in OS X, resolves #481, thanks to @karolyi for his\n        tests in OS X while I was unable to test it myself\n\n  \n                                                            |\n                _` |  __ \\    _` |   __|   _ \\   __ \\    _` |   _` |\n               (   |  |   |  (   |  (     (   |  |   |  (   |  (   |\n              \\__,_| _|  _| \\__,_| \\___| \\___/  _|  _| \\__,_| \\__,_|\n                                       The Sublime Text 3 Python IDE\n  \n  \n  Anaconda v2.0.6\n  ===============\n  \n  This is a minor bug fix release\n  \n  ## Fixes\n  \n      - Fix strange behaviour when mypy is being used as a library, resolves #521\n      - Increased timeouts for first local worker connection hopefully resolves #514\n  \n  ## Additions\n  \n      - Added new configuration option `mypy_suppress_stub_warnings` that does exactly what it's name indicates\n\n  \n                                                            |\n                _` |  __ \\    _` |   __|   _ \\   __ \\    _` |   _` |\n               (   |  |   |  (   |  (     (   |  |   |  (   |  (   |\n              \\__,_| _|  _| \\__,_| \\___| \\___/  _|  _| \\__,_| \\__,_|\n                                       The Sublime Text 3 Python IDE\n  \n  \n  Anaconda v2.0.5\n  ===============\n  \n  This is a minor bug fix release\n  \n  ## Fixes\n  	- Fixed wrong import in minserver.py\n\n  \n                                                            |\n                _` |  __ \\    _` |   __|   _ \\   __ \\    _` |   _` |\n               (   |  |   |  (   |  (     (   |  |   |  (   |  (   |\n              \\__,_| _|  _| \\__,_| \\___| \\___/  _|  _| \\__,_| \\__,_|\n                                       The Sublime Text 3 Python IDE\n  \n  \n  Anaconda v2.0.4\n  ===============\n  \n  This is a minor bug fix release\n  \n  ## Fixes\n  	- Fix for Unix Domain Sockets longer than 103 characters, #519\n  	- Fix for wrong linting lines on import validation, #337\n\n  |\n                _` |  __     _` |   __|   _    __     _` |   _` |\n               (   |  |   |  (   |  (     (   |  |   |  (   |  (   |\n              __,_| _|  _| __,_| ___| ___/  _|  _| __,_| __,_|\n                                       The Sublime Text 3 Python IDE\n  \n  \n  \n  Anaconda v2.0.0\n  ===============\n  Small bugfix release\n  \n  ## Fixes\n      - Resolves unicode problem reported in #513\n      - Hopefully resolves #514 in slow machines\n\n  \n  \n                                                            |\n                _` |  __ \\    _` |   __|   _ \\   __ \\    _` |   _` |\n               (   |  |   |  (   |  (     (   |  |   |  (   |  (   |\n              \\__,_| _|  _| \\__,_| \\___| \\___/  _|  _| \\__,_| \\__,_|\n                                       The Sublime Text 3 Python IDE\n  \n  \n  \n  Anaconda v2.0.1\n  ===============\n  \n  Small typo fix in a function call in anaconda_lib/helper.py\n",
 			"settings":
 			{
-				"buffer_size": 113,
+				"buffer_size": 5189,
+				"line_ending": "Unix",
+				"name": "Package Control Messages",
+				"read_only": true,
+				"scratch": true
+			}
+		},
+		{
+			"file": "session.py",
+			"settings":
+			{
+				"buffer_size": 361,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "/Users/mellypang/Library/Application Support/Sublime Text 3/Packages/Anaconda/Anaconda.sublime-settings",
+			"file": "user.py",
 			"settings":
 			{
-				"buffer_size": 19076,
+				"buffer_size": 439,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "locustio-aws.sublime-project",
+			"file": "settings.py",
 			"settings":
 			{
-				"buffer_size": 351,
+				"buffer_size": 230,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "device.py",
+			"settings":
+			{
+				"buffer_size": 373,
 				"line_ending": "Unix"
 			}
 		},
@@ -91,6 +162,8 @@
 	],
 	"file_history":
 	[
+		"/Users/mellypang/lloyds/eb-locustio-sample/locustio-aws.sublime-project",
+		"/Users/mellypang/Library/Application Support/Sublime Text 3/Packages/Anaconda/Anaconda.sublime-settings"
 	],
 	"find":
 	{
@@ -108,6 +181,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"indentation",
 			"autocom"
 		],
 		"highlight": true,
@@ -135,15 +209,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2003,
+						"buffer_size": 2212,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								614,
-								614
+								1950,
+								1950
 							]
 						],
 						"settings":
@@ -156,29 +230,31 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "mida_session.py",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 113,
+						"buffer_size": 5189,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								113,
-								113
+								5189,
+								5189
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Python/Python.sublime-syntax"
+							"auto_indent": false,
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"tab_width": 2,
+							"word_wrap": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -189,65 +265,119 @@
 				},
 				{
 					"buffer": 2,
-					"file": "/Users/mellypang/Library/Application Support/Sublime Text 3/Packages/Anaconda/Anaconda.sublime-settings",
+					"file": "session.py",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 19076,
+						"buffer_size": 361,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3106,
-								3118
+								94,
+								61
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JSON.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 1084.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "locustio-aws.sublime-project",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 351,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								341,
-								341
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JSON.sublime-syntax",
-							"translate_tabs_to_spaces": false
+							"syntax": "Packages/Python/Python.sublime-syntax"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "user.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 439,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								228,
+								228
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.sublime-syntax",
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
 					"type": "text"
 				},
 				{
 					"buffer": 4,
+					"file": "settings.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 230,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								218,
+								218
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "device.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 373,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								127,
+								127
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
 					"file": "kinesis_client.py",
 					"semi_transient": false,
 					"settings":
@@ -259,8 +389,8 @@
 						"selection":
 						[
 							[
-								208,
-								208
+								340,
+								340
 							]
 						],
 						"settings":
@@ -273,7 +403,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 2,
 					"type": "text"
 				}
 			]
@@ -285,7 +415,7 @@
 	},
 	"input":
 	{
-		"height": 0.0
+		"height": 31.0
 	},
 	"layout":
 	{
