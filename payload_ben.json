@@ -1,0 +1,9 @@
+{ "eventType": "AddPayee",
+  "txnID": {{ payload.txnID }},
+  "applicationID": {{ payload.applicationID }},
+  "financialInstitution": "LTB",
+  "partyId": {{ payload.partyID }},
+  "benSortCd": "111204",
+  "benAccountNo": "5006156",
+  "transactionAm": 200.00
+}

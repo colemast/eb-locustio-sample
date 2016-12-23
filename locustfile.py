@@ -18,6 +18,7 @@ def render(tpl_path, context):
     ).get_template(filename).render(context)
     return template.replace("\n","").replace("\t","")
 
+
 class Logout(TaskSet):
     @task
     def logout(self):
@@ -35,8 +36,8 @@ class Logout(TaskSet):
 
 
 class AccountOverview(TaskSet):
-    min_wait = 10000
-    max_wait = 60000
+    min_wait = 1000
+    max_wait = 6000
 
     @task(1000)
     def account_overview(self):
@@ -52,15 +53,16 @@ class AccountOverview(TaskSet):
 
     @task(600)
     def stop(self):
-        self.interrupt()
+        pass
+        #self.interrupt()
 
     tasks = {account_overview: 1000, pending_transactions: 100,
              view_transaction: 300, stop: 600, Logout: 800}
 
 
 class BenCreation(TaskSet):
-    min_wait = 30000
-    max_wait = 120000
+    min_wait = 3000
+    max_wait = 12000
 
     @task(1000)
     def add_beneficiary(self):
@@ -68,12 +70,13 @@ class BenCreation(TaskSet):
 
     @task(200)
     def stop(self):
-        self.interrupt()
+        pass
+        #self.interrupt()
 
 
 class InternationalPayment(TaskSet):
-    min_wait = 30000
-    max_wait = 120000
+    min_wait = 3000
+    max_wait = 12000
 
     @task(1000)
     def add_beneficiary(self):
@@ -81,12 +84,13 @@ class InternationalPayment(TaskSet):
 
     @task(200)
     def stop(self):
-        self.interrupt()
+        pass
+        #self.interrupt()
 
 
 class Payment(TaskSet):
-    min_wait = 30000
-    max_wait = 120000
+    min_wait = 3000
+    max_wait = 12000
 
     @task
     def payment(self):
@@ -98,7 +102,8 @@ class Payment(TaskSet):
 
     @task
     def stop(self):
-        self.interrupt()
+        pass
+        #self.interrupt()
 
     tasks = {BenCreation: 15, InternationalPayment: 1,
              payment: 60, transfer: 10, stop: 5, Logout: 20}
@@ -107,16 +112,13 @@ class Payment(TaskSet):
 class NormalUser(TaskSet):
 
     def on_start(self):
-        s = list(session.SessionFactory().generate(1))[0]
-        s["device"] = random.choice(s["u"]["devices"])
-        s["u"]["devices"].pop()
-        event = {   "party_id": s["u"]["party_id"],
-                    "session_id": s["mida_session_id"],
-                    "timestamp": datetime.datetime.now().isoformat(),
-                    "device_id": s["device"]["device_id"],
-                    "device_type": s["device"]["device_type"]}
-        xml_event = render("templates/notify_session.xml", event)
-        self.locust.client.send_event(xml_event)
+        self.new_session()
+
+    @task(30)
+    def new_session(self):
+        if self.locust.session:
+            self.locust.end_session()
+        self.locust.create_session()
 
     tasks = {Payment: 15, AccountOverview: 20}
 
@@ -127,3 +129,12 @@ class NormalUserLocust(Locust):
     def __init__(self):
         super(NormalUserLocust, self).__init__()
         self.client = ApiGatewayClient(NOTIFYSESSION_URL)
+
+    def end_session(self):
+        self.session = None
+
+    def create_session(self):
+        self.session = list(session.SessionFactory().generate(1))[0]
+        self.session["device"] = random.choice(self.session["u"]["devices"])
+        #self.session["u"]["devices"].pop()
+        self.client.put_data_in_stream(self.session, "Login")
